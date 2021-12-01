@@ -1,0 +1,79 @@
+@import url('./fonts/Pixallari/stylesheet.css');
+@import url('./fonts/Dogica/stylesheet.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply scrollbar-thin  scrollbar-thumb-black;
+}
+
+@layer components {
+	.animation1-top {
+		animation: animate1 6s linear infinite;
+		animation-delay: -80s;
+	}
+	.animation1-bottom {
+		animation: animate2 6s linear infinite;
+		animation-delay: -80s;
+	}
+	.animation2-top {
+		animation: animate3 6s linear infinite;
+		animation-delay: -70s;
+	}
+	.animation2-bottom {
+		animation: animate4 6s linear infinite;
+		animation-delay: -70s;
+	}
+
+	.animation1-top_mobile {
+		animation: animate1 2s linear infinite;
+		animation-delay: -3s;
+	}
+	.animation1-bottom_mobile {
+		animation: animate2 2s linear infinite;
+		animation-delay: -3s;
+	}
+	.animation2-top_mobile {
+		animation: animate3 3s linear infinite;
+		animation-delay: -4s;
+	}
+	.animation2-bottom_mobile {
+		animation: animate4 3s linear infinite;
+		animation-delay: -4s;
+	}
+}
+
+@keyframes animate1 {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+@keyframes animate2 {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-200%);
+	}
+}
+
+@keyframes animate3 {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+@keyframes animate4 {
+	0% {
+		transform: translateX(-200%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
