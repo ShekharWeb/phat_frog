@@ -32,13 +32,13 @@ const Gravetown = () => {
 				</p>
 				<div className="flex flex-col space-y-4 max-w-full">
 					<button className="text-gray-50 bg-gray-700 py-4 text-lg rounded-md">
-						Explore the city
+						Access to Pre Sale of our Token Launch
 					</button>
 					<button className="text-gray-50 bg-gray-700 py-4 text-lg rounded-md">
-						Customize your hideout
+						Future utility in GameFi
 					</button>
 					<button className="text-gray-50 bg-gray-700 py-4 text-lg rounded-md">
-						Meet new friends
+						👀
 					</button>
 				</div>
 			</div>

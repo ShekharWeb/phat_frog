@@ -7,24 +7,29 @@ import Rarity from '../components/Rarity';
 import Roadmap from '../components/Roadmap';
 import Tokenomics from '../components/Tokenomics';
 
-
-
-export default function Home({connectToWeb3,account,connected,nftContract}) {
-	
-
+export default function Home({
+	connectToWeb3,
+	account,
+	connected,
+	nftContract,
+}) {
 	return (
-		<div className="overflow-x-hidden">
+		<div className="overflow-x-hidden bg-[#edf3ec] ">
 			<Head>
 				<title>Create Next App</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			
+
 			<main>
-				
-				<Main connectToWeb3={connectToWeb3} account={account} connected={connected} nftContract={nftContract} />
+				<Main
+					connectToWeb3={connectToWeb3}
+					account={account}
+					connected={connected}
+					nftContract={nftContract}
+				/>
 				<Rarity />
-				<Gravetown />
-				<Tokenomics />
+				{/* <Gravetown /> */}
+				{/* <Tokenomics /> */}
 				<Roadmap />
 				<Qna />
 			</main>

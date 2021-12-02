@@ -11,7 +11,7 @@ const Roadmap = () => {
 								25% Minted
 							</h4>
 							<h5 className="text-xl font-medium text-blue-700">
-								Night of the Living Bones
+								Sell all our frogs! 🐸
 							</h5>
 							<ul className="text-lg space-y-1 font-normal">
 								<li>Hire a front-end ThreeJS developer.</li>
@@ -28,7 +28,7 @@ const Roadmap = () => {
 								50% Minted
 							</h4>
 							<h5 className="text-xl font-medium text-green-700">
-								Monkey Shines
+								Launch our liquidity pool owned Meme token
 							</h5>
 							<ul className="text-lg space-y-1 font-normal">
 								<li>Hire a social media manager.</li>
@@ -43,7 +43,8 @@ const Roadmap = () => {
 								75% Minted
 							</h4>
 							<h5 className="text-xl font-medium text-yellow-700">
-								Land of the Bones
+								Decide as a community what to do with our
+								treasury!
 							</h5>
 							<ul className="text-lg space-y-1 font-normal">
 								<li>Hire a second front-end developer.</li>
@@ -66,6 +67,20 @@ const Roadmap = () => {
 							<span className="w-3 h-3 bg-yellow-800 rounded-full absolute -top-4 -left-8"></span>
 						</li>
 					</ul>
+				</div>
+				<div className="space-y-4">
+					<p className="text-lg max-w-3xl text-gray-500">
+						Do you want to be part of the Phat Frogs family?
+					</p>
+					<p className="text-lg max-w-3xl text-gray-500">
+						As a community-led project, we want everyone to be
+						involved and are looking for 🐸 in all areas
+						(Developers, Social Media, Community, Meme Creators)
+					</p>
+					<p className="text-lg max-w-3xl text-gray-500">
+						If you are interested and want to get involved, hop into
+						our Discord and join our community today.
+					</p>
 				</div>
 			</div>
 		</div>
