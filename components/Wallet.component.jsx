@@ -8,14 +8,13 @@ const WalletComponent = ({ connected, loadingNFTs, nftArray }) => {
 				<h3 className="text-3xl font-bold">Wallet.</h3>
 				<div className="space-y-4 max-w-3xl text-gray-700">
 					<p className="text-xl">
-						Check out all your Phat Frogs here. Including traits and
-						rarity!
+						Check out all your Phat Frogs here.
 					</p>
 					{connected
 						?
 						<h1 className="text-3xl font-bold">Here is All you Phat Frogs ({nftArray.length}):</h1>
 						:
-						<h1 className="text-3xl font-bold">Please Connect for check your Phat Frogs</h1>
+						<h1 className="text-3xl font-bold">Please Connect to check your Phat Frogs</h1>
 					}
 					<div className="flex flex-wrap gap-4">
 						{loadingNFTs

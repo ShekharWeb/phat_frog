@@ -6,8 +6,9 @@ const Main = ({ connectToWeb3, account, connected, nftContract }) => {
 	const [number, setNumber] = useState(1);
 	const [totalNfts, setTotalNfts] = useState(10000);
 	const [mintedNfts, setMintedNfts] = useState(null);
-	const [mintCost, setMintCost] = useState(10 ** 17);
 	const [mainLoading, setMainLoading] = useState(false);
+
+	const [messageFor, setMessageFor] = useState('Please connect your wallet to mint NFT');
 
 	const incNumber = () =>
 		number > 19 ? setNumber(number) : setNumber(number + 1);
@@ -16,13 +17,19 @@ const Main = ({ connectToWeb3, account, connected, nftContract }) => {
 
 	useEffect(() => {
 		if (connected) {
+			setMessageFor('Connecting...');
 			loadNFTData();
+		} else {
+			setMessageFor('Please connect your wallet to mint NFT')
 		}
 	}, []);
 
 	useEffect(() => {
 		if (connected) {
+			setMessageFor('Connecting...')
 			loadNFTData();
+		} else {
+			setMessageFor('Please connect your wallet to mint NFT')
 		}
 	}, [nftContract]);
 
@@ -31,26 +38,54 @@ const Main = ({ connectToWeb3, account, connected, nftContract }) => {
 			setMainLoading(true);
 			const totalNfts = await nftContract.methods.getMaxSupply().call();
 			const mintedNFTs = await nftContract.methods.totalSupply().call();
-			const _mintCost = await nftContract.methods.getMintCost().call();
 			setMintedNfts(mintedNFTs);
 			setTotalNfts(totalNfts);
-			setMintCost(_mintCost);
 			setMainLoading(false);
+			setMessageFor('Connected, Ready to mint NFT');
 		}
 	};
 
 	const mintNFT = async () => {
 		if (connected) {
 			setMainLoading(true);
+
+			var _mintCostNow;
+			// const isPublicSale = await nftContract.methods.isPublicSaleOn().call();
+			const isPublicSale = false;
+			var isPresale = false;
+			if (!isPublicSale) {
+				isPresale = await nftContract.methods.isPresaleOn().call();
+			}
+			if (isPublicSale) {
+				const _publicCost = await nftContract.methods.getMintCost().call();
+				_mintCostNow = _publicCost.toString();
+			} else if (isPresale) {
+				const isWhitelistMember = await nftContract.methods.isWhitelisted(account).call();
+				if (isWhitelistMember) {
+					const _preSaleCost = await nftContract.methods.getMintCostForWhitelist().call();
+					_mintCostNow = _preSaleCost.toString();
+				} else {
+					setMessageFor('Presale is going on. Your not a whitelist member. So, please mint in Public Sale.');
+					setMainLoading(false);
+					return
+				}
+
+			} else {
+				setMessageFor('Nft minting not started yet. Please Mint after public sale start');
+				setMainLoading(false);
+				return
+			}
+
 			await nftContract.methods
 				.mint(number)
-				.send({ from: account, value: mintCost * number })
+				.send({ from: account, value: _mintCostNow * number })
 				.on('confirmation', (confirmationNumber, receipt) => {
 					console.log(receipt);
 					loadNFTData();
 				})
 				.on('error', function (error, receipt) {
 					console.log(error);
+					setMessageFor(error.message);
 					loadNFTData();
 				});
 		}
@@ -60,16 +95,16 @@ const Main = ({ connectToWeb3, account, connected, nftContract }) => {
 		<div className="-mt-4 relative overflow-hidden">
 			<div className="flex max-w-7xl px-6 sm:px-16 mx-auto py-8 border-b-4 rounded-sm border-gray-700 z-40">
 				{/* Left */}
-				<div className="bg-red-400 opacity-95 max-w-md z-40 mt-6">
+				<div className="bg-red-400 opacity-95 max-w-md z-40 mt-6 ml-auto mr-auto">
 					<div className="flex space-y-4 text-gray-700 flex-col px-6 py-10">
 						<h2 className="text-4xl font-bold">
 							10,000 multi-coloured
 						</h2>
-						<p className="text-2xl font-light text-gray-200">
+						<p className="text-2xl font-light text-gray-200 text-center">
 							<span className="text-gray-500">degen</span>erative
 							frogs
 						</p>
-						<p className="text-2xl font-light text-gray-100">
+						<p className="text-2xl font-light text-gray-100 text-center">
 							made for the frog nation army
 						</p>
 						<p className="mx-auto text-center w-full text-3xl border-t-2 border-b-2 border-gray-600 py-2 font-semibold">
@@ -106,11 +141,7 @@ const Main = ({ connectToWeb3, account, connected, nftContract }) => {
 									`Mint`
 								)}
 							</button>
-							{connected ? (
-								<p>Connected, Ready to mint NFT</p>
-							) : (
-								<p>Please connect your wallet for mint NFT</p>
-							)}
+							<p>{messageFor}</p>
 						</div>
 					</div>
 				</div>

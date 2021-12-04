@@ -6,7 +6,7 @@ const Rarity = () => {
 			<div className="max-w-7xl space-y-6 px-6 sm:px-16 mx-auto py-8 border-b-4 rounded-sm border-gray-700">
 				<div className="flex md:flex-row-reverse flex-row md:items-center justify-end">
 					<div className="md:ml-8">
-						<h3 className="text-3xl font-bold">
+						<h3 className="text-3xl font-bold  mb-10">
 							Mint your own King of the Frogs-inspired NFT!
 						</h3>
 						<div className="space-y-4 max-w-3xl">
@@ -39,8 +39,8 @@ const Rarity = () => {
 							</p>
 						</div>
 					</div>
-					<div className="hidden md:block">
-						<Image src="/8307.png" height={200} width={200} />
+					<div className="hidden md:block mt-5 mb-5">
+						<Image src="/8307.png" height={400} width={400} />
 					</div>
 				</div>
 			</div>

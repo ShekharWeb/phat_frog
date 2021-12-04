@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }) {
 		const networkId = await web3.eth.net.getId()
 
 		if (networkId == 43114 || networkId == 43113 || networkId==1) {
-			const contractAddress = "0x6132f3Fb7D02167D9F86219FAE0fDCa673792fc0";
+			const contractAddress = "0xe54e497e3d8fe73972b42356f7B4B6e91936EbE0";
 			const nftContract0 = new web3.eth.Contract(NftContractAbi.abi, contractAddress);
 			setConnected(true);
 			setNftContract(nftContract0);
